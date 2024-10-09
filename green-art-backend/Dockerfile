@@ -27,7 +27,7 @@ RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloade
 
 
 # Expose the port your app runs on
-EXPOSE 7001
+EXPOSE 7100
 
 # Start PHP-FPM
 CMD ["php-fpm"]

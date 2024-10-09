@@ -9,5 +9,5 @@ COPY package.json package-lock.json ./
 RUN npm install --force
 COPY . .
 RUN npm run build
-EXPOSE 7000
+EXPOSE 7200
 CMD ["npm", "run", "start"]
