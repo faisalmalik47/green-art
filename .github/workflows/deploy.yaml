@@ -1,0 +1,28 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+
+env:
+  HOST: ${{ secrets.HOST }}
+  USERNAME: ${{ secrets.USERNAME }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH to server and deploy application
+        uses: appleboy/ssh-action@v0.1.0
+        with:
+          host: ${{ env.HOST }}
+          username: ${{ env.USERNAME }}
+          password: ${{ env.PASSWORD }}
+          script: |
+            cd /home/gacv2/green-art
+            git pull origin main
+            docker-compose up --build -d
+            docker-compose logs
