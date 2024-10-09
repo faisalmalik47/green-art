@@ -28,9 +28,9 @@ services:
     restart: always
     platform: linux/amd64
     environment:
-      MYSQL_DATABASE: "exchange"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "pass"
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
     networks:
