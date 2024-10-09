@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./green-art-backend
+      dockerfile: Dockerfile
+    ports:
+      - "7001:7001"
+    networks:
+      - green-art
+    env_file:
+      - ./green-art-backend/.env 
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./green-art-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "7000:7000"
+    networks:
+      - green-art
+    env_file:
+      - ./green-art-frontend/.env
+
+  db:
+    image: mysql:5.7
+    restart: always
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - green-art
+
+networks:
+  green-art:
+    driver: bridge
+
+volumes:
+  db_data: {}
