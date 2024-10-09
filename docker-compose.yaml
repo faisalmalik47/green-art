@@ -17,7 +17,7 @@ services:
       context: ./green-art-frontend
       dockerfile: Dockerfile
     ports:
-      - "7200:7200"
+      - "7000:7000"
     networks:
       - green-art
     env_file:
