@@ -1,4 +1,3 @@
-# Use the official PHP image with FPM and Alpine
 FROM php:8.2-fpm-alpine AS builder
 
 # Install necessary packages and PHP extensions
@@ -24,7 +23,6 @@ COPY . .
 
 # Install dependencies
 RUN composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
-
 
 # Expose the port your app runs on
 EXPOSE 7100
